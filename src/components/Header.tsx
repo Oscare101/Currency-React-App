@@ -41,14 +41,14 @@ export default function Header() {
       className="header"
       style={{ backgroundColor: theme === 'dark' ? '#282c34' : '#E2E8F5' }}
     >
-      <div
+      <p
         className="headerTitle"
         style={{ color: theme === 'dark' ? '#fff' : '#000' }}
       >
         Currency calculator
-      </div>
+      </p>
       <CurrencyPair title="UAH/USD" value={currency.USD.toFixed(2)} />
-      <CurrencyPair title="UAH/EUR" value={currency.EUR} />
+      <CurrencyPair title="UAH/EUR" value={currency.EUR.toFixed(2)} />
 
       <button
         className={
@@ -56,7 +56,10 @@ export default function Header() {
             ? 'themeButton themeButtonDark'
             : 'themeButton themeButtonLight'
         }
-        onClick={ChangeTheme}
+        onClick={(event: any) => {
+          ChangeTheme()
+          event.stopPropagation()
+        }}
       >
         {theme === 'dark' ? (
           <IoMoonOutline size={30} color={'#fff'} />

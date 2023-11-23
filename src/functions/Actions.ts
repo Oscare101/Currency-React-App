@@ -8,3 +8,13 @@ export async function GetCurrency() {
   const eurToUahRate = data.find((currency: any) => currency.cc === 'EUR').rate
   return { USD: usdToUahRate, EUR: eurToUahRate }
 }
+
+export function CheckInput(input: string) {
+  let num = null
+  if (input.replace(',', '.') === '0' || input.replace(',', '.') === '.') {
+    num = null
+  } else {
+    num = input.replace(',', '.')
+  }
+  return num
+}

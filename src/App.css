@@ -9,7 +9,14 @@
   align-items: center;
   justify-content: start;
   height: 100vh;
-  background-color: #eee;
+}
+
+.darkBG {
+  background-color: #1f2023;
+}
+
+.lightBG {
+  background-color: #fff;
 }
 
 .header {
@@ -54,7 +61,7 @@
 .themeButtonLight {
   border-color: #d7d9dc;
   background-color: #e2e8f5;
-  /* transition: 0.2s; */
+  transition: 0.2s;
 }
 
 .themeButtonLight:hover {
@@ -64,9 +71,111 @@
 .themeButtonDark {
   border-color: #1c1e23;
   background-color: #282c34;
-  /* transition: 0.2s; */
+  transition: 0.2s;
 }
 
 .themeButtonDark:hover {
   background-color: #383d47;
+}
+
+.flexView {
+  flex: 1;
+  display: flex;
+  width: 60%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.calculatorItemBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+.currencyButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: 0;
+  transform: 0.1s;
+  position: relative;
+  cursor: pointer;
+  height: 75px;
+  width: 150px;
+}
+
+.dropDownCurrency {
+  width: 150px;
+  height: 150px;
+  background-color: red;
+  position: absolute;
+  top: 75px;
+  border-radius: 5px;
+}
+
+.dropDownDark {
+  background-color: #282a2e;
+}
+
+.dropDownLight {
+  background-color: #e3e5e8;
+}
+
+.CurrencyDropDownButton {
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50%;
+  background-color: transparent;
+  border: 0;
+}
+
+.CurrencyDropDownButton:hover {
+  opacity: 0.7;
+}
+
+.CurrencyDropDownTitle {
+  font-size: 24px;
+}
+
+.inputField {
+  padding: 0;
+  background-color: transparent;
+  outline: none;
+  font-size: 24px;
+  padding: 5px;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  margin-top: 10px;
+}
+
+.inputFieldDark {
+  border-color: #fff;
+  color: #fff;
+}
+
+.inputFieldLight {
+  border-color: 000;
+  color: #000;
+}
+
+.link {
+  text-decoration: none !important;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.linkTitle {
+  font-size: 24px;
+  font-weight: 300;
+  margin-right: 10px;
 }
