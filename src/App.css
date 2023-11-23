@@ -1,38 +1,72 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  height: 100vh;
+  background-color: #eee;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100px;
+  width: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.headerTitle {
+  font-size: 30px;
+}
+
+.headerCurrencyBlock {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-right: 50px;
 }
 
-.App-link {
-  color: #61dafb;
+.headerCurrencyTitle {
+  font-size: 20px;
+  opacity: 0.6;
+  margin-bottom: 5px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.headerCurrencyValue {
+  font-size: 22px;
+}
+
+.themeButton {
+  height: 50px;
+  width: 100px;
+  border-radius: 100px;
+  border-width: 1;
+  border-style: solid;
+}
+
+.themeButtonLight {
+  border-color: #d7d9dc;
+  background-color: #e2e8f5;
+  /* transition: 0.2s; */
+}
+
+.themeButtonLight:hover {
+  background-color: #eff3fb;
+}
+
+.themeButtonDark {
+  border-color: #1c1e23;
+  background-color: #282c34;
+  /* transition: 0.2s; */
+}
+
+.themeButtonDark:hover {
+  background-color: #383d47;
 }
