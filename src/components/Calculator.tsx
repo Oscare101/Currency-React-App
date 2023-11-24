@@ -10,6 +10,8 @@ const numbers = /^\d{0,10}(\.\d{0,2})?$/
 export default function Calcolator() {
   const theme = useSelector((state: RootState) => state.theme)
   const currency = useSelector((state: RootState) => state.currency)
+  const orientation = useSelector((state: RootState) => state.orientation)
+
   const [firstCurrency, setFirstCurrency] = useState<string>('UAH') // chosen first currency
   const [secondCurrency, setSecondCurrency] = useState<string>('USD') // chosen second currency
   const [firstCurrencyValue, setFirstCurrencyValue] = useState<any>() // entered value or calculated value for the first one
@@ -154,11 +156,9 @@ export default function Calcolator() {
         />
         <input
           type="text"
-          className={
-            theme === 'dark'
-              ? 'inputField inputFieldDark'
-              : 'inputField inputFieldLight'
-          }
+          className={` ${
+            theme === 'dark' ? 'inputFieldDark' : 'inputFieldLight'
+          } ${orientation === 'landscape' ? 'inputField' : 'inputFieldMobile'}`}
           placeholder={'0'}
           value={firstCurrencyValue || ''}
           onChange={(event: any) => {
@@ -181,11 +181,9 @@ export default function Calcolator() {
         />
         <input
           type="text"
-          className={
-            theme === 'dark'
-              ? 'inputField inputFieldDark'
-              : 'inputField inputFieldLight'
-          }
+          className={` ${
+            theme === 'dark' ? 'inputFieldDark' : 'inputFieldLight'
+          } ${orientation === 'landscape' ? 'inputField' : 'inputFieldMobile'}`}
           placeholder={'0'}
           value={secondCurrencyValue || ''}
           onChange={(event: any) => {

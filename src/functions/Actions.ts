@@ -18,3 +18,7 @@ export function CheckInput(input: string) {
   }
   return num
 }
+
+export function GetDimensions() {
+  return { width: window.innerWidth }
+}

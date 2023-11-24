@@ -28,8 +28,34 @@
   width: 100%;
 }
 
+.headerPortrait {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 100px;
+  width: 100%;
+}
+
 .headerTitle {
   font-size: 30px;
+}
+
+.headerTitleMobile {
+  font-size: 22px;
+}
+
+.underHeaderBlock {
+  display: flex;
+  flex-direction: row;
+}
+
+.underHeaderBlockMobile {
+  display: flex;
+  flex-direction: row;
+  width: 92%;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .headerCurrencyBlock {
@@ -156,6 +182,19 @@
   margin-top: 10px;
 }
 
+.inputFieldMobile {
+  padding: 0;
+  background-color: transparent;
+  outline: none;
+  font-size: 24px;
+  padding: 5px;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  margin-top: 10px;
+  width: 90%;
+}
+
 .inputFieldDark {
   border-color: #fff;
   color: #fff;
@@ -164,6 +203,24 @@
 .inputFieldLight {
   border-color: 000;
   color: #000;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100px;
+  width: 100%;
+}
+
+.footerMobile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 50px;
+  width: 100%;
 }
 
 .link {
@@ -176,6 +233,12 @@
 
 .linkTitle {
   font-size: 24px;
+  font-weight: 300;
+  margin-right: 10px;
+}
+
+.linkTitleMobile {
+  font-size: 14px;
   font-weight: 300;
   margin-right: 10px;
 }

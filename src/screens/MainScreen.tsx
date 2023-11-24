@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../App.css'
 import Header from '../components/Header'
-import { GetCurrency } from '../functions/Actions'
+import { GetCurrency, GetDimensions } from '../functions/Actions'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateCurrency } from '../redux/currency'
 import { updateTheme } from '../redux/theme'
 import { RootState } from '../redux'
 import Footer from '../components/Footer'
 import Calcolator from '../components/Calculator'
+import { updateOrientation } from '../redux/orientation'
 
 export default function MainScreen() {
   const theme = useSelector((state: RootState) => state.theme)
@@ -22,9 +23,29 @@ export default function MainScreen() {
     }
   }
 
+  function UpdateDimension() {
+    const dimentionValue = GetDimensions()
+    dispatch(
+      updateOrientation(dimentionValue.width < 700 ? 'portrait' : 'landscape')
+    )
+  }
+
+  const [screenSize, setScreenSize] = useState(GetDimensions())
+  useEffect(() => {
+    const updateDimension = () => {
+      UpdateDimension()
+      setScreenSize(GetDimensions())
+    }
+    window.addEventListener('resize', updateDimension)
+    return () => {
+      window.removeEventListener('resize', updateDimension)
+    }
+  }, [screenSize])
+
   useEffect(() => {
     ;(async () => {
       GetTheme()
+      UpdateDimension()
 
       const currency = await GetCurrency()
       dispatch(updateCurrency(currency))
