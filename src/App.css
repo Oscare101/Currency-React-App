@@ -120,6 +120,16 @@
   justify-content: center;
 }
 
+.currencyButtonBlock {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 75px;
+  width: 150px;
+}
+
 .currencyButton {
   display: flex;
   flex-direction: row;
@@ -128,7 +138,6 @@
   background-color: transparent;
   border: 0;
   transform: 0.1s;
-  position: relative;
   cursor: pointer;
   height: 75px;
   width: 150px;

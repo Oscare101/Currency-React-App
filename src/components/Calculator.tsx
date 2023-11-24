@@ -81,6 +81,7 @@ export default function Calcolator() {
     }
   }
 
+  // dropdown
   function CurrencyBlock(props: any) {
     const theme = useSelector((state: RootState) => state.theme)
     const [dropDown, setDropDown] = useState<boolean>(false)
@@ -105,23 +106,27 @@ export default function Calcolator() {
     }
 
     return (
-      <button
-        className="currencyButton"
-        onClick={() => {
-          setDropDown(true)
-        }}
-      >
-        <IoCaretDownSharp
-          size={30}
-          color={theme === 'dark' ? '#fff' : '#000'}
-        />
-        <p
-          className="headerTitle"
-          style={{ color: theme === 'dark' ? '#fff' : '#000', marginRight: 30 }}
+      <div className="currencyButtonBlock">
+        <button
+          className="currencyButton"
+          onClick={() => {
+            setDropDown(true)
+          }}
         >
-          {props.currency}
-        </p>
-
+          <IoCaretDownSharp
+            size={30}
+            color={theme === 'dark' ? '#fff' : '#000'}
+          />
+          <p
+            className="headerTitle"
+            style={{
+              color: theme === 'dark' ? '#fff' : '#000',
+              marginRight: 30,
+            }}
+          >
+            {props.currency}
+          </p>
+        </button>
         {dropDown ? (
           <div
             className={
@@ -139,7 +144,7 @@ export default function Calcolator() {
         ) : (
           <></>
         )}
-      </button>
+      </div>
     )
   }
 
