@@ -7,7 +7,7 @@ import { updateCurrency } from '../redux/currency'
 import { updateTheme } from '../redux/theme'
 import { RootState } from '../redux'
 import Footer from '../components/Footer'
-import Calcolator from '../components/Calculator'
+import Calculator from '../components/Calculator'
 import { updateOrientation } from '../redux/orientation'
 
 export default function MainScreen() {
@@ -59,7 +59,7 @@ export default function MainScreen() {
       className={theme === 'dark' ? 'container darkBG' : 'container lightBG'}
     >
       <Header />
-      <Calcolator />
+      <Calculator />
       <Footer />
     </div>
   )

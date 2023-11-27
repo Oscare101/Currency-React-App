@@ -1,17 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { Currency } from '../constants/interfaces'
 
-const initialState: any = {
-  USD: 0,
-  EUR: 0,
-}
+const initialState: Currency[] = []
 
 const currencySlice = createSlice({
   name: 'currency',
   initialState,
   reducers: {
-    updateCurrency: (state, action: PayloadAction<any>) => {
-      state.USD = action.payload.USD
-      state.EUR = action.payload.EUR
+    updateCurrency: (state, action: PayloadAction<Currency[]>) => {
+      state.splice(0, state.length, ...action.payload)
     },
   },
 })

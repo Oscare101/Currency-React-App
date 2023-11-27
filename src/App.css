@@ -127,7 +127,7 @@
   justify-content: center;
   position: relative;
   height: 75px;
-  width: 150px;
+  width: 100%;
 }
 
 .currencyButton {
@@ -144,12 +144,22 @@
 }
 
 .dropDownCurrency {
-  width: 150px;
-  height: 150px;
-  background-color: red;
+  width: 200px;
+  height: 200px;
   position: absolute;
   top: 75px;
   border-radius: 5px;
+
+  /* width: 280px; */
+  /* height: 200px; */
+  position: absolute;
+  /* top: 62px; */
+  /* z-index: 3; */
+  /* border-radius: 8px; */
+  overflow-x: hidden;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
 }
 
 .dropDownDark {
@@ -164,7 +174,8 @@
   width: 100%;
   padding: 5px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: start;
   justify-content: center;
   height: 50%;
   background-color: transparent;

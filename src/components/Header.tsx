@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { updateTheme } from '../redux/theme'
 import { IoSunnyOutline, IoMoonOutline } from 'react-icons/io5'
 import HeaderCurrencyPair from './HeaderCurrencyPair'
+import { Currency } from '../constants/interfaces'
+
 interface CurrencyPairProps {
   title: string
   value: number
@@ -19,6 +21,10 @@ export default function Header() {
   function ChangeTheme() {
     localStorage.setItem('theme', theme === 'dark' ? 'light' : 'dark')
     dispatch(updateTheme(theme === 'dark' ? 'light' : 'dark'))
+  }
+
+  function GetCurrencyRate(currencyName: string) {
+    return currency.find((c: Currency) => c.currency === currencyName)?.rate
   }
 
   return (
@@ -41,8 +47,14 @@ export default function Header() {
             : 'underHeaderBlockMobile'
         }
       >
-        <HeaderCurrencyPair title="UAH/USD" value={currency.USD.toFixed(2)} />
-        <HeaderCurrencyPair title="UAH/EUR" value={currency.EUR.toFixed(2)} />
+        <HeaderCurrencyPair
+          title="UAH/USD"
+          value={GetCurrencyRate('USD') || 0}
+        />
+        <HeaderCurrencyPair
+          title="UAH/EUR"
+          value={GetCurrencyRate('EUR') || 0}
+        />
 
         <button
           className={
@@ -50,7 +62,7 @@ export default function Header() {
               ? 'themeButton themeButtonDark'
               : 'themeButton themeButtonLight'
           }
-          onClick={(event: any) => {
+          onClick={(event: React.MouseEvent<HTMLElement>) => {
             ChangeTheme()
             event.stopPropagation()
           }}
