@@ -125,8 +125,6 @@ export default function Calculator() {
       )
     }
 
-    console.log(currency.find((c: Currency) => c.currency === currency))
-
     return (
       <div className="currencyButtonBlock">
         <button
