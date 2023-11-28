@@ -11,10 +11,11 @@ interface CurrencyPairProps {
 }
 
 export default function Header() {
-  const currency = useSelector((state: RootState) => state.currency)
-
-  const theme = useSelector((state: RootState) => state.theme)
-  const orientation = useSelector((state: RootState) => state.orientation)
+  const currency: Currency[] = useSelector((state: RootState) => state.currency)
+  const theme: string = useSelector((state: RootState) => state.theme)
+  const orientation: string = useSelector(
+    (state: RootState) => state.orientation
+  )
 
   const dispatch = useDispatch()
 

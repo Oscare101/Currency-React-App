@@ -3,8 +3,10 @@ import { useSelector } from 'react-redux'
 import { IoOpenOutline } from 'react-icons/io5'
 
 export default function Footer() {
-  const theme = useSelector((state: RootState) => state.theme)
-  const orientation = useSelector((state: RootState) => state.orientation)
+  const theme: string = useSelector((state: RootState) => state.theme)
+  const orientation: string = useSelector(
+    (state: RootState) => state.orientation
+  )
 
   return (
     <div

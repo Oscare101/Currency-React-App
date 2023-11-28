@@ -8,14 +8,28 @@ import { Currency } from '../constants/interfaces'
 const numbers = /^\d{0,10}(\.\d{0,2})?$/
 
 export default function Calculator() {
-  const theme = useSelector((state: RootState) => state.theme)
-  const currency: any = useSelector((state: RootState) => state.currency)
-  const orientation = useSelector((state: RootState) => state.orientation)
+  const theme: string = useSelector((state: RootState) => state.theme)
+  const currency: Currency[] = useSelector((state: RootState) => state.currency)
+  const orientation: string = useSelector(
+    (state: RootState) => state.orientation
+  )
 
   const [firstCurrency, setFirstCurrency] = useState<string>('UAH') // chosen first currency
   const [secondCurrency, setSecondCurrency] = useState<string>('USD') // chosen second currency
   const [firstCurrencyValue, setFirstCurrencyValue] = useState<number>(0) // entered value or calculated value for the first one
   const [secondCurrencyValue, setSecondCurrencyValue] = useState<number>(0) // entered value or calculated value for the second one
+
+  function GetValueFromCurrency(value: number, newCurrency: string) {
+    const selectedCurrency = currency?.find(
+      (c: Currency) => c.currency === newCurrency
+    )?.rate
+    let result: number = 0
+    if (selectedCurrency) {
+      result = value / selectedCurrency
+    }
+
+    return +result.toFixed(2)
+  }
 
   // calculate seccond currency value every time the first one is changed
   function CalculateCurrencyFromFirstValue(
@@ -25,7 +39,7 @@ export default function Calculator() {
     let temporarySecondCurrency = secondCurrency
     if (secondCurrency === firstCurrency) {
       temporarySecondCurrency = currency.filter(
-        (i: any) => i.currency !== firstCurrency
+        (i: Currency) => i.currency !== firstCurrency
       )[0].currency
       setSecondCurrency(temporarySecondCurrency)
     }
@@ -38,19 +52,11 @@ export default function Calculator() {
       //currency[temporarySecondCurrency]
       if (!currency.find((c: Currency) => c.currency === firstCurrency)) {
         setSecondCurrencyValue(
-          +(
-            firstCurrencyValue /
-            currency.find(
-              (c: Currency) => c.currency === temporarySecondCurrency
-            )?.rate
-          ).toFixed(2)
+          GetValueFromCurrency(firstCurrencyValue, temporarySecondCurrency)
         )
       } else {
         setSecondCurrencyValue(
-          +(
-            firstCurrencyValue *
-            currency.find((c: Currency) => c.currency === firstCurrency)?.rate
-          ).toFixed(2)
+          GetValueFromCurrency(firstCurrencyValue, firstCurrency)
         )
       }
     } else {
@@ -66,7 +72,7 @@ export default function Calculator() {
     let temporaryFirstCurrency = firstCurrency
     if (secondCurrency === firstCurrency) {
       temporaryFirstCurrency = currency.filter(
-        (i: any) => i.currency !== secondCurrency
+        (i: Currency) => i.currency !== secondCurrency
       )[0].currency
       setFirstCurrency(temporaryFirstCurrency)
     }
@@ -78,19 +84,11 @@ export default function Calculator() {
     if (secondCurrencyValue) {
       if (!currency.find((c: Currency) => c.currency === secondCurrency)) {
         setFirstCurrencyValue(
-          +(
-            secondCurrencyValue /
-            currency.find(
-              (c: Currency) => c.currency === temporaryFirstCurrency
-            )?.rate
-          ).toFixed(2)
+          GetValueFromCurrency(secondCurrencyValue, temporaryFirstCurrency)
         )
       } else {
         setFirstCurrencyValue(
-          +(
-            secondCurrencyValue *
-            currency.find((c: Currency) => c.currency === secondCurrency)?.rate
-          ).toFixed(2)
+          GetValueFromCurrency(secondCurrencyValue, secondCurrency)
         )
       }
     } else {
@@ -158,7 +156,7 @@ export default function Calculator() {
               backgroundColor: theme === 'dark' ? '#282c34' : '#E2E8F5',
             }}
           >
-            {[{ currency: 'UAH' }, ...currency]
+            {[{ currency: 'UAH', text: 'Гривня', rate: 0 }, ...currency]
               .filter((i: Currency) => i.currency !== props.currency)
               .map((cur: Currency) => (
                 <CurrencyDropDownItem key={cur.currency} currency={cur} />
@@ -176,7 +174,6 @@ export default function Calculator() {
       <div className="calculatorItemBlock">
         <CurrencyBlock
           currency={firstCurrency}
-          currencyValue={firstCurrencyValue}
           setCurrency={(newCurrency: string) => {
             setFirstCurrency(newCurrency)
             CalculateCurrencyFromFirstValue(newCurrency, firstCurrencyValue)
@@ -189,9 +186,9 @@ export default function Calculator() {
           } ${orientation === 'landscape' ? 'inputField' : 'inputFieldMobile'}`}
           placeholder={'0'}
           value={firstCurrencyValue || ''}
-          onChange={(event: any) => {
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             if (numbers.test(event.target.value.replace(',', '.'))) {
-              const checkedInput: any = CheckInput(event.target.value)
+              const checkedInput: number = CheckInput(event.target.value)
               setFirstCurrencyValue(checkedInput)
               CalculateCurrencyFromFirstValue(firstCurrency, checkedInput)
             }
@@ -201,7 +198,6 @@ export default function Calculator() {
       <div className="calculatorItemBlock">
         <CurrencyBlock
           currency={secondCurrency}
-          currencyValue={secondCurrencyValue}
           setCurrency={(newCurrency: string) => {
             setSecondCurrency(newCurrency)
             CalculateCurrencyFromSecondValue(newCurrency, secondCurrencyValue)
@@ -214,9 +210,9 @@ export default function Calculator() {
           } ${orientation === 'landscape' ? 'inputField' : 'inputFieldMobile'}`}
           placeholder={'0'}
           value={secondCurrencyValue || ''}
-          onChange={(event: any) => {
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
             if (numbers.test(event.target.value.replace(',', '.'))) {
-              const checkedInput: any = CheckInput(event.target.value)
+              const checkedInput: number = CheckInput(event.target.value)
               setSecondCurrencyValue(checkedInput)
               CalculateCurrencyFromSecondValue(secondCurrency, checkedInput)
             }

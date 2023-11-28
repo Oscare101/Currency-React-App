@@ -14,11 +14,11 @@ export async function GetCurrency() {
 }
 
 export function CheckInput(input: string) {
-  let num = null
+  let num = 0
   if (input.replace(',', '.') === '0' || input.replace(',', '.') === '.') {
-    num = null
+    num = 0
   } else {
-    num = input.replace(',', '.')
+    num = +input.replace(',', '.')
   }
   return num
 }
